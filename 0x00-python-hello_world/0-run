@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ -z "$PYFILE" ]; then
+	echo "Error, the string is empty"
+	exit 1
+fi
+if [ ! -f "$PYFILE" ]; then
+	echo "Error, $PYFILE does not exist"
+	exit 1
+fi
+python3 $PYFILE
