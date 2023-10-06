@@ -8,6 +8,6 @@ if __name__ == "__main__":
     if len_args == 0:
         print(int("0"))
     result = 0
-    for i, items in enumerate(args, start=1):
+    for items in args:
         result = result + int(items)
     print("{}".format(result))
