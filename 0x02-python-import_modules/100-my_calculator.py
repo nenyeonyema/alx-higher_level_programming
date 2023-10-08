@@ -26,6 +26,6 @@ def calculate():
 
     print("{:d} {:s} {:d} = {:d}".format(a, operator, b, result))
 
+
 if __name__ == "__main__":
     calculate()
-
