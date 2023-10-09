@@ -11,4 +11,4 @@ def element_at(my_list, idx):
         if idx > lent:
             return None
         if idx == item:
-            return "{:d}".format(my_list[idx])
+            return (my_list[idx])
