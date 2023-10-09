@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#a function that retrieves an element from a list
+# a function that retrieves an element from a list
 
 
 def element_at(my_list, idx):
