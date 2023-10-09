@@ -10,5 +10,5 @@ def element_at(my_list, idx):
             return None
         if idx > lent:
             return None
-        if idx == item:
+        else:
             return (my_list[idx])
