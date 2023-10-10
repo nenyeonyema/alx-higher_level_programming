@@ -3,8 +3,6 @@
 
 
 def print_matrix_integer(matrix=[[]]):
-    lent =  len(matrix)
-
     for row in matrix:
         for column in row:
             if column != row[-1]:
