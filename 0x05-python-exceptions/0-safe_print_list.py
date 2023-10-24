@@ -12,7 +12,7 @@ def safe_print_list(my_list=[], x=0):
 
             if count >= x:
                 break
-        except Exception as e:
+        except IndexError:
             pass
 
     print("")
