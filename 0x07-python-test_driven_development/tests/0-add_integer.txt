@@ -1,7 +1,31 @@
 >>> add = __import__("0-add_integer").add_integer
+
 >>> add(1, 2)
 3
+
 >>> add(100, -2)
 98
+
 >>> add(2.5, 1.5)
 3
+
+>>> add(5, 3.5)
+8
+
+>>> add("3", 2)
+Traceback (most recent call last):
+  ...
+TypeError: a must be an integer
+
+>>> add(4, "5")
+Traceback (most recent call last):
+  ...
+TypeError: b must be an integer
+
+>>> add(7, 9)
+16
+
+>>> add(None)
+Traceback (most recent call last):
+  ...
+TypeError: a must be an integer
