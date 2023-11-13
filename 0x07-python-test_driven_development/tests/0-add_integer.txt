@@ -6,10 +6,13 @@
 >>> add(100, -2)
 98
 
->>> add(2.5, 1.5)
-3
+>>> add(2)
+100
 
->>> add(5, 3.5)
+>>> add(100.3, -2)
+98
+
+>>> add(5.3, 3.5)
 8
 
 >>> add("3", 2)
@@ -17,13 +20,10 @@ Traceback (most recent call last):
   ...
 TypeError: a must be an integer
 
->>> add(4, "5")
+>>> add(4, "School")
 Traceback (most recent call last):
   ...
 TypeError: b must be an integer
-
->>> add(7, 9)
-16
 
 >>> add(None)
 Traceback (most recent call last):
