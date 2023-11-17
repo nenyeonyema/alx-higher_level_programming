@@ -1,10 +1,103 @@
-MyList = __import__('1-my_list').MyList
->>> list1 = MyList([3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5])
+Test for 1-my_list
+-------------------------------------------------------
 
->>> list1.print_sorted()
-[1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9]
+>>> MyList = __import__('1-my_list').MyList
 
->>> list2 = MyList([1, 4, 2, 3, 5])
+Case 1: Expected output
 
->>> list2.print.sorted()
+>>> list1 = MyList()
+>>> list1.append(1)
+>>> list1.append(4)
+>>> list1.append(2)
+>>> list1.append(1)
+>>> list1.append(3)
+>>> list1.append(5)
+>>> print(list1)
+[1, 4, 2, 3, 5]
+>>> list1.print.sorted()
 [1, 2, 3, 4, 5]
+>>> print(list1)
+[1, 4, 2, 3, 5]
+>>>
+-------------------------------------------------------------
+
+Case 2: object not defined
+
+>>> MyList = __import__('1-my_list').MyList
+>>> list2.print_sorted()
+Traceback (most recent call last):
+  ---
+NameError: name 'list2' is not defined
+>>>
+
+--------------------------------------------------------------
+
+Case 3: Passed an empty list
+
+>>> new_list = []
+>>> list3 = MyList(new_list)
+list3.print_sorted()
+[]
+>>>
+
+----------------------------------------------------------------
+
+Case 4: passed in a list
+
+>>> list4 = MyList([6, 2, 1, 8, 4, 9])
+>>> list4.print_sorted()
+[1, 2, 4, 6, 8, 9]
+>>>
+
+----------------------------------------------------------------
+
+Case 5: Same number
+
+>>> list5 = MyList()
+>>> list5.append(1)
+>>> list5.append(1)
+>>> list5.append(1)
+>>> list5.append(1)
+>>> list5.print_sorted()
+[1, 1, 1, 1]
+>>>
+
+-----------------------------------------------------------------
+
+case 6: unique number
+
+>>> list6 = MyList()
+>>> list6.append(1)
+>>> list6.print_sorted()
+[1]
+>>> print(list6)
+[1]
+>>>
+
+------------------------------------------------------------------
+
+case 7: negative numbers
+
+>>> MyList = __import__('1-my_list').MyList
+>>> list7 = MyList()
+>>> list7.append(4)
+>>> list7.append(1)
+>>> list7.append(-3)
+>>> list7.append(20)
+>>> list7.append(-7)
+>>> list7.print_sorted()
+[-7, -3, 1, 4, 20]
+>>>
+
+---------------------------------------------------------------------
+
+Case 8: parent object
+
+>>> list8 = [1, 2, 3]
+>>> list8.print_sorted()
+Traceback (most recent call last):
+  ---
+AttributeError: 'list' object has no attribute 'print_sorted'
+>>>
+
+-----------------------------------------------------------------------
