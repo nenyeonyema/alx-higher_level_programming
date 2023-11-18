@@ -74,9 +74,13 @@ class Rectangle(Base):
 
     @y.setter
     def y(self, value):
-        """ Set attribute for y"""
+        """ Set attribute for y """
         if not isinstance(value, int):
             raise TypeError("y must be an integer")
         if value < 0:
             raise ValueError("y must be >= 0")
         self.__y = value
+
+    def area(self):
+        """ Area of a rectangle"""
+        return self.__width * self.__height
