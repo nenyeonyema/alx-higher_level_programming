@@ -1,11 +1,10 @@
 #!/usr/bin/node
 exports.converter = function (base) {
-  if (base <= 1) return;
-
-  this.converter = function (number) {
-    if (number >= base) {
-      this.converter(number / base);
+  return function (number) {
+    if (base === 10) {
+      return number;
+    } else {
+      return parseInt(number).toString(base);
     }
-    process.stdout.write(String(number % base));
   };
 };
