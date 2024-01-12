@@ -22,7 +22,7 @@ fs.readFile(fileAPath, 'utf8', (err, dataA) => {
     }
 
     // Concatenate the contents of fileA and fileB
-    const concatenatedContent = dataA.trim() + '\n' + dataB.trim();
+    const concatenatedContent = dataA.trim() + dataB.trim();
 
     // Write the concatenated content to the destination file
     fs.writeFile(destFilePath, concatenatedContent, (err) => {
