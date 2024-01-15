@@ -20,7 +20,7 @@ def filter_states(username, password, database):
         cursor = db.cursor()
 
         # Execute SQL query to select states starting with 'N'
-        cursor.execute("SELECT * FROM states\
+        cursor.execute("SELECT * FROM states \
                 WHERE name LIKE 'N%' ORDER BY id ASC")
 
         # Fetch all rows from the result set
@@ -44,7 +44,7 @@ def filter_states(username, password, database):
 if __name__ == "__main__":
     # Check if three arguments are provided
     if len(sys.argv) != 4:
-        print("Usage: ./1-filter_states.py\
+        print("Usage: ./1-filter_states.py \
                 <username> <password> <database_name>")
         sys.exit(1)
 

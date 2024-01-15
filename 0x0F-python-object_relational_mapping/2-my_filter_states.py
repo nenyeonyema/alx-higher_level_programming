@@ -4,10 +4,10 @@ import sys
 import MySQLdb
 
 
-def search_states(username, password, database, state_name):
+def filter_states(username, password, database, state_name):
     """
-    Connects to MySQL database and
-    searches for states based on user input
+    Connects to MySQL database and searches
+    for states based on user input
     """
 
     try:
@@ -23,8 +23,9 @@ def search_states(username, password, database, state_name):
         cursor = db.cursor()
 
         # Use format to create SQL query with user input
-        cursor.execute("SELECT MIN(id), name FROM states WHERE name LIKE\
-                '{}' GROUP BY name ORDER BY MIN(id) ASC".format(state_name))
+        query = "SELECT * FROM states WHERE name LIKE \
+                '{}' ORDER BY id ASC".format(state_name)
+        cursor.execute(query)
 
         # Fetch all rows from the result set
         rows = cursor.fetchall()
@@ -47,7 +48,7 @@ def search_states(username, password, database, state_name):
 if __name__ == "__main__":
     # Check if four arguments are provided
     if len(sys.argv) != 5:
-        print("Usage: ./search_states.py\
+        print("Usage: ./2-my_filter_states.py \
                 <username> <password> <database> <state_name>")
         sys.exit(1)
 
@@ -57,5 +58,5 @@ if __name__ == "__main__":
     database = sys.argv[3]
     state_name = sys.argv[4]
 
-    # Search and display states
-    search_states(username, password, database, state_name)
+    # Search and display states where name matches the provided argument
+    filter_states(username, password, database, state_name)
