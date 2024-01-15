@@ -1,11 +1,14 @@
 #!/usr/bin/python3
 """A script that searches for states in the hbtn_0e_0_usa database"""
-
 import sys
 import MySQLdb
 
+
 def search_states(username, password, database, state_name):
-    """Connects to MySQL database and searches for states based on user input"""
+    """
+    Connects to MySQL database and
+    searches for states based on user input
+    """
 
     try:
         # Connect to MySQL database
@@ -20,8 +23,8 @@ def search_states(username, password, database, state_name):
         cursor = db.cursor()
 
         # Use format to create SQL query with user input
-        query = "SELECT * FROM states WHERE name LIKE '{}' ORDER BY id ASC".format(state_name)
-        cursor.execute(query)
+        cursor.execute("SELECT MIN(id), name FROM states WHERE name LIKE\
+                '{}' GROUP BY name ORDER BY MIN(id) ASC".format(state_name))
 
         # Fetch all rows from the result set
         rows = cursor.fetchall()
@@ -40,10 +43,12 @@ def search_states(username, password, database, state_name):
             cursor.close()
             db.close()
 
+
 if __name__ == "__main__":
     # Check if four arguments are provided
     if len(sys.argv) != 5:
-        print("Usage: ./search_states.py <username> <password> <database> <state_name>")
+        print("Usage: ./search_states.py\
+                <username> <password> <database> <state_name>")
         sys.exit(1)
 
     # Get command-line arguments
