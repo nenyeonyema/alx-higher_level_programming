@@ -1,48 +1,59 @@
 #!/usr/bin/python3
-""" a script that lists all states from the database hbtn_0e_0_usa """
+"""
+A script that lists all states with a name
+starting with N from the database hbtn_0e_0_usa
+"""
 import sys
 import MySQLdb
 
 
-def filter_list(username, password, database):
-    """ List all states with a name starting with N """
+def select_states(username, password, database):
+    """Connects to MySQL database and selects states starting with 'N'"""
+
     try:
-        # Connect to MySQL server
+        # Connect to MySQL database
         db = MySQLdb.connect(
-        host="localhost",
-        port=3306,
-        user=username,
-        passwd=password,
-        db=database
+            host='localhost',
+            port=3306,
+            user=username,
+            passwd=password,
+            db=database
         )
 
-        # Create a cursor object to interact with the database
         cursor = db.cursor()
 
-        # Execute the SQL query to retrieve states starting with 'N'
-        query = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
-        cursor.execute(query)
+        # Execute SQL query to select states starting with 'N'
+        cursor.execute("SELECT MIN(id), name FROM states WHERE \
+                name LIKE 'N%' GROUP BY name ORDER BY MIN(id) ASC")
 
-        # Fetch all the rows
+        # Fetch all rows from the result set
         rows = cursor.fetchall()
 
-        # Display the results
+        # Display results
         for row in rows:
             print(row)
 
-        # Close cursor and database connection
-        cursor.close()
-        db.closei()
-
     except MySQLdb.Error as e:
-        print("Error connecting to MySQL: ", e)
+        print("MySQL Error {}: {}".format(e.args[0], e.args[1]))
         sys.exit(1)
+
+    finally:
+        # Close cursor and database connection
+        if 'db' in locals() and db:
+            cursor.close()
+            db.close()
 
 
 if __name__ == "__main__":
+    # Check if three arguments are provided
     if len(sys.argv) != 4:
+        print("Usage: ./select_states.py <username> <password> <database>")
         sys.exit(1)
 
-    username, password, database = sys.argv[1:]
+    # Get command-line arguments
+    username = sys.argv[1]
+    password = sys.argv[2]
+    database = sys.argv[3]
 
-    filter_list(username, password, database)
+    # Select and display states
+    select_states(username, password, database)
