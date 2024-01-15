@@ -1,14 +1,11 @@
 #!/usr/bin/python3
-"""
-A script that lists all states with a name
-starting with N from the database hbtn_0e_0_usa
-"""
+"""A script that searches for states in the hbtn_0e_0_usa database"""
+
 import sys
 import MySQLdb
 
-
-def select_states(username, password, database):
-    """Connects to MySQL database and selects states starting with 'N'"""
+def search_states(username, password, database, state_name):
+    """Connects to MySQL database and searches for states based on user input"""
 
     try:
         # Connect to MySQL database
@@ -22,9 +19,9 @@ def select_states(username, password, database):
 
         cursor = db.cursor()
 
-        # Execute SQL query to select states starting with 'N'
-        cursor.execute("SELECT MIN(id), name FROM states WHERE \
-                name LIKE 'N%' GROUP BY name ORDER BY MIN(id) ASC")
+        # Use format to create SQL query with user input
+        query = "SELECT * FROM states WHERE name LIKE '{}' ORDER BY id ASC".format(state_name)
+        cursor.execute(query)
 
         # Fetch all rows from the result set
         rows = cursor.fetchall()
@@ -43,17 +40,17 @@ def select_states(username, password, database):
             cursor.close()
             db.close()
 
-
 if __name__ == "__main__":
-    # Check if three arguments are provided
-    if len(sys.argv) != 4:
-        print("Usage: ./select_states.py <username> <password> <database>")
+    # Check if four arguments are provided
+    if len(sys.argv) != 5:
+        print("Usage: ./search_states.py <username> <password> <database> <state_name>")
         sys.exit(1)
 
     # Get command-line arguments
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
+    state_name = sys.argv[4]
 
-    # Select and display states
-    select_states(username, password, database)
+    # Search and display states
+    search_states(username, password, database, state_name)
