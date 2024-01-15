@@ -20,7 +20,7 @@ def cities_by_state(username, password, database):
                 cities JOIN states ON cities.state_id = states.id \
                 ORDER BY cities.id ASC"
 
-        cursor.execute(quuery)
+        cursor.execute(query)
 
         rows = cursor.fetchall()
 
