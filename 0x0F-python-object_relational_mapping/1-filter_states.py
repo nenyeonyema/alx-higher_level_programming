@@ -6,31 +6,37 @@ import MySQLdb
 
 def filter_list(username, password, database):
     """ List all states with a name starting with N """
-    db = MySQLdb.connect(
+    try:
+        # Connect to MySQL server
+        db = MySQLdb.connect(
         host="localhost",
         port=3306,
         user=username,
         passwd=password,
         db=database
-    )
+        )
 
-    # Create a cursor object to interact with the database
-    cursor = db.cursor()
+        # Create a cursor object to interact with the database
+        cursor = db.cursor()
 
-    # Execute the SQL query to retrieve states starting with 'N'
-    query = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
-    cursor.execute(query)
+        # Execute the SQL query to retrieve states starting with 'N'
+        query = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
+        cursor.execute(query)
 
-    # Fetch all the rows
-    rows = cursor.fetchall()
+        # Fetch all the rows
+        rows = cursor.fetchall()
 
-    # Display the results
-    for row in rows:
-        print(row)
+        # Display the results
+        for row in rows:
+            print(row)
 
-    # Close cursor and database connection
-    cursor.close()
-    db.closei()
+        # Close cursor and database connection
+        cursor.close()
+        db.closei()
+
+    except MySQLdb.Error as e:
+        print("Error connecting to MySQL: ", e)
+        sys.exit(1)
 
 
 if __name__ == "__main__":
