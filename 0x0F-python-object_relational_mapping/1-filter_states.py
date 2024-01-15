@@ -4,23 +4,14 @@ import sys
 import MySQLdb
 
 
-if __name__ == "__main__":
-    """Check if correct number of arguments is provided """
-    if len(sys.argv) != 4:
-        print("Usage: {} <username> <password> <database>".format(sys.argv[0]))
-        sys.exit(1)
-
-    # Extract command line arguments
-    username, password, database = sys.argv[1:]
-
-    # Connect to MySQL server
+def filter_list(username, password, database):
+    """ List all states with a name starting with N """
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
         user=username,
         passwd=password,
-        db=database,
-        charset="utf8"
+        db=database
     )
 
     # Create a cursor object to interact with the database
@@ -39,4 +30,13 @@ if __name__ == "__main__":
 
     # Close cursor and database connection
     cursor.close()
-    db.close()
+    db.closei()
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 4:
+        sys.exit(1)
+
+    username, password, database = sys.argv[1:]
+
+    filter_list(username, password, database)
