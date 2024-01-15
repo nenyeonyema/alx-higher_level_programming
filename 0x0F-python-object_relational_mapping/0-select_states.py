@@ -1,11 +1,20 @@
 #!/usr/bin/python3
+""" A script that lists all states from the database hbtn_0e_0_usa"""
 import sys
 import MySQLdb
 
+
 def fetch_states(username, password, database_name):
+    """ This function list all states"""
     try:
         # Connect to MySQL database
-        db = MySQLdb.connect(host='localhost', port=3306, user=username, passwd=password, db=database_name)
+        db = MySQLdb.connect(
+                host='localhost',
+                port=3306,
+                user=username,
+                passwd=password,
+                db=database_name
+        )
         cursor = db.cursor()
 
         # Execute SQL query to select all states sorted by id
@@ -26,10 +35,12 @@ def fetch_states(username, password, database_name):
         print("Error connecting to MySQL:", e)
         sys.exit(1)
 
+
 if __name__ == "__main__":
     # Check if three arguments are provided
     if len(sys.argv) != 4:
-        print("Usage: ./0-select_states.py <username> <password> <database_name>")
+        print("Usage: ./0-select_states.py\
+                <username> <password> <database_name>")
         sys.exit(1)
 
     # Get command-line arguments

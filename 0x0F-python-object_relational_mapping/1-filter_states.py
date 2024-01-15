@@ -1,9 +1,11 @@
 #!/usr/bin/python3
+""" a script that lists all states from the database hbtn_0e_0_usa """
 import sys
 import MySQLdb
 
+
 if __name__ == "__main__":
-    # Check if correct number of arguments is provided
+    """Check if correct number of arguments is provided """
     if len(sys.argv) != 4:
         print("Usage: {} <username> <password> <database>".format(sys.argv[0]))
         sys.exit(1)
