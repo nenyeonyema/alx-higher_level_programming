@@ -1,18 +1,20 @@
-#!/usr/bin/python3
+#!/bin/bash
 
-import sys
-import requests
+# Check if the script is provided with the correct number of arguments
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <URL>"
+    exit 1
+fi
 
-if len(sys.argv) != 2:
-    print("Usage: {} <URL>".format(sys.argv[0]))
-    sys.exit(1)
+# Send a request to the URL using curl and store the response body in a temporary file
+response_body=$(mktemp)
+curl -s "$1" -o "$response_body"
 
-url = sys.argv[1]
+# Calculate the size of the response body in bytes
+body_size=$(stat -c %s "$response_body")
 
-try:
-    response = requests.get(url)
-    body_size = len(response.content)
-    print(body_size)
-except Exception as e:
-    print("Error:", e)
-    sys.exit(1)
+# Display the size of the response body
+echo "$body_size"
+
+# Clean up the temporary file
+rm "$response_body"
