@@ -29,9 +29,6 @@ request.get(apiUrl, (error, response, body) => {
       const count = films.filter(film => film.characters.includes(`https://swapi-api.alx-tools.com/api/people/${characterId}/`)).length;
       // Print the count
       console.log(count);
-    } else {
-      // Print an error message if the response status code is not 200
-      console.error(`Failed to retrieve movie information. Status code: ${response.statusCode}`);
     }
   }
 });
