@@ -3,7 +3,8 @@
 
 const fs = require('fs');
 
-// Get the file path and the string to write from the command line arguments
+// Get the file path and the string to write
+// from the command line arguments
 const filePath = process.argv[2];
 const stringToWrite = process.argv[3];
 
